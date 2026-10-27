@@ -48,17 +48,19 @@ contract of autonomous runs. No skill fills a slot (`provides:`).
 
 ## Install
 
-The marketplace entry is pending; until it merges there is no plugin install line.
-Install Crew first and follow its quickstarts — this pack adds skills, not setup.
+The marketplace entry is pending; until it merges, the plugin install line below
+does not resolve. Install Crew first and follow its quickstarts — this pack adds
+skills, not setup.
 
-Install the pack at user scope, beside Crew, so it is available machine-wide
-in every session.
+Once the marketplace entry lands, install the pack at user scope, beside Crew,
+so it is available machine-wide in every session. Until then, the Claude Code
+and Codex paths below are interim and load the pack per session or per project.
 
 | Harness | How today |
 |---|---|
 | pi.dev | git package `git:github.com/pixeloven/language-skills@vX.Y.Z`, added beside Crew in `packages` (pi.dev has no marketplace) |
-| Claude Code | load a local checkout with `claude --plugin-dir /absolute/path/to/language-skills`, or vendor `skills/` into the project |
-| OpenAI Codex | vendor `skills/` into the project's `.agents/skills/` |
+| Claude Code | interim: load a local checkout for one session with `claude --plugin-dir /absolute/path/to/language-skills`, or vendor `skills/` into the project |
+| OpenAI Codex | interim: vendor `skills/` into the project's `.agents/skills/` |
 
 Once the marketplace entry lands, install Crew (`crew@pixeloven`) first, then:
 
