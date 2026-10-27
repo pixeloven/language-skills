@@ -48,18 +48,39 @@ contract of autonomous runs. No skill fills a slot (`provides:`).
 
 ## Install
 
-The marketplace entry is pending; until it merges there is no plugin install line.
-Install Crew first and follow its quickstarts — this pack adds skills, not setup.
+The marketplace entry is pending; until it merges, the plugin install line below
+does not resolve. Install Crew first and follow its quickstarts — this pack adds
+skills, not setup.
 
-**Enable it per project, not globally.** A language pack belongs in the projects
-written in that language; installed at user scope, its descriptions cost every
-session in every repository.
+Once the marketplace entry lands, install the pack at user scope, beside Crew,
+so it is available machine-wide in every session. Until then, the Claude Code
+and Codex paths below are interim and load the pack per session or per project.
 
 | Harness | How today |
 |---|---|
-| pi.dev | git package `git:github.com/pixeloven/language-skills@vX.Y.Z`, added beside Crew in the project's `packages` (pi.dev has no marketplace) |
-| Claude Code | load a local checkout with `claude --plugin-dir /absolute/path/to/language-skills`, or vendor `skills/` into the project |
-| OpenAI Codex | vendor `skills/` into the project's `.agents/skills/` |
+| pi.dev | git package `git:github.com/pixeloven/language-skills@vX.Y.Z`, added beside Crew in `packages` (pi.dev has no marketplace) |
+| Claude Code | interim: load a local checkout for one session with `claude --plugin-dir /absolute/path/to/language-skills`, or vendor `skills/` into the project |
+| OpenAI Codex | interim: vendor `skills/` into the project's `.agents/skills/` |
+
+Once the marketplace entry lands, install Crew (`crew@pixeloven`) first, then:
+
+```sh
+claude plugin install language-skills@pixeloven --scope user
+```
+
+User scope is the CLI default and writes
+`"enabledPlugins": { "language-skills@pixeloven": true }` to
+`~/.claude/settings.json`. Each enabled pack adds its descriptions to the
+always-on skill listing, and Claude Code collapses an over-budget listing to
+names only, which hurts skill selection; the description cost below is the
+price of keeping the pack on everywhere.
+
+To enable the pack only in specific Python repos instead, run
+`claude plugin install language-skills@pixeloven --scope project` from the
+project root. This writes the same entry to the project's
+`.claude/settings.json`, which you can also edit by hand and commit so the
+whole team gets it. `--scope local` does the same in
+`.claude/settings.local.json` for you alone.
 
 As with Crew, Claude Code and Codex namespace plugin skills
 (`language-skills:<name>`) while project skills stay bare, so a same-named local
